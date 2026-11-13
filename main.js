@@ -16,11 +16,13 @@
     }
     panel.hidden = false;
     player.dataset.open = 'true';
+    document.body.classList.add('is-playing');
     mainBtn.setAttribute('aria-expanded', 'true');
   }
   function closePlayer() {
     panel.hidden = true;
     player.dataset.open = 'false';
+    document.body.classList.remove('is-playing');
     mainBtn.setAttribute('aria-expanded', 'false');
   }
 
@@ -35,6 +37,16 @@
     });
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePlayer(); });
+
+  // Voltar ao topo: sobe até o início, com ou sem animação conforme a preferência do aparelho
+  document.querySelectorAll('a[href="#topo"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var reduceTop = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduceTop ? 'auto' : 'smooth' });
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+    });
+  });
 
   // Próximas datas. Para anunciar um show, adicione um item, por exemplo:
   // { data: '2026-12-12', local: 'Nome do clube', cidade: 'São Paulo, SP', link: 'https://ingressos...' }
