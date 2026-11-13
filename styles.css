@@ -60,7 +60,8 @@ p { margin: 0; max-width: 62ch; }
 
 /* ===== Topo ===== */
 .top { position: sticky; top: 0; z-index: 40; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px; height: 52px; padding: 0 var(--gutter); padding-top: env(safe-area-inset-top, 0px); background: var(--ground); border-bottom: 1px solid var(--line); }
-.top__brand { font: 900 26px/1 var(--font-display); text-transform: uppercase; text-decoration: none; }
+.top__brand { display: block; line-height: 0; }
+.top__brand img { display: block; height: 22px; width: auto; }
 .ticker { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .ticker__track { display: flex; gap: 22px; width: max-content; animation: slide 40s linear infinite; }
 .ticker__track span { font: 500 11px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--line-strong); white-space: nowrap; }
@@ -264,7 +265,7 @@ p { margin: 0; max-width: 62ch; }
 .foot { background: #0c0c0c; padding-top: 80px; }
 .foot__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 40px; align-items: end; }
 .foot__brand { display: grid; gap: 8px; }
-.foot__name { font: 900 clamp(90px, 12vw, 190px)/.82 var(--font-display); text-transform: uppercase; color: var(--ink); }
+.foot__name { display: block; width: clamp(240px, 34vw, 560px); height: auto; }
 .foot__brand em { font: italic 400 22px/1.3 var(--font-body); color: var(--ink-muted); }
 .pads { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; padding: 12px; background: #151514; border: 1px solid var(--line); border-radius: 10px; }
 .pads__head { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; padding: 2px 4px 6px; }
