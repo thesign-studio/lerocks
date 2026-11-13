@@ -92,7 +92,7 @@ p { margin: 0; max-width: 62ch; }
 .tile__albumtitle { position: relative; z-index: 1; font: 900 clamp(40px, 4.4vw, 68px)/.86 var(--font-display); text-transform: uppercase; }
 
 .tile--hero { grid-column: 2 / 4; grid-row: 2 / 4; padding: 0; align-content: stretch; background: var(--surface); }
-.tile--hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; filter: grayscale(1) contrast(1.12); }
+.tile--hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; filter: grayscale(1) contrast(1.12); }
 .tile--hero::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgba(17, 17, 17, .7)); }
 .tile__row--top { position: absolute; top: 14px; left: 16px; right: 16px; }
 .tile__row--top .label { color: var(--ink); }
@@ -334,3 +334,7 @@ body.is-playing .mixer { border-color: var(--red); }
 .textlink, .ticket__go { display: inline-flex; align-items: center; gap: 6px; }
 .textlink .ico, .ticket__go .ico, .foot__legal .ico, .tile--list .ico { width: 12px; height: 12px; stroke-width: 2.2; }
 .tile__star { fill: none; stroke: currentColor; stroke-linecap: square; }
+
+/* Logo na abertura: mesma posição do nome, com a parte de baixo cortada pela borda do bloco */
+.hero-logo { bottom: 0; left: 16px; right: 16px; font-size: 0; line-height: 0; }
+.hero-logo img { display: block; width: 100%; height: auto; margin-bottom: -4.6%; filter: drop-shadow(0 6px 24px rgba(0,0,0,.35)); }

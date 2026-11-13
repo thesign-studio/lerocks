@@ -16,7 +16,7 @@
   // Abertura: ordem dos blocos e nome letra por letra
   document.querySelectorAll('.bento > .tile').forEach(function (t, i) { t.style.setProperty('--i', i); });
   var name = document.querySelector('.hero-name');
-  if (name) {
+  if (name && !name.querySelector('img')) {
     var txt = name.textContent;
     name.setAttribute('aria-label', txt);
     name.innerHTML = txt.split('').map(function (c, i) {
@@ -70,7 +70,7 @@
   }
 
   // Letreiros seguem no CSS, sempre da direita para a esquerda, em velocidade constante.
-  var heroImg = document.querySelector('.tile--hero img');
+  var heroImg = document.querySelector('.tile--hero > img');
   var phones = Array.prototype.slice.call(document.querySelectorAll('.phone'));
   var phoneFactor = [-0.07, 0.05, -0.11];
 
