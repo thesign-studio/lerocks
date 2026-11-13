@@ -69,39 +69,19 @@
     io.observe(pads);
   }
 
-  // Letreiros: andam sozinhos, aceleram e invertem conforme a rolagem; a faixa vermelha inclina
-  var tracks = Array.prototype.map.call(document.querySelectorAll('.marquee__track, .ticker__track'), function (el) {
-    return { el: el, x: 0, dir: 1, base: el.classList.contains('ticker__track') ? 0.4 : 1, half: 0 };
-  });
-  var marquee = document.querySelector('.marquee');
+  // Letreiros seguem no CSS, sempre da direita para a esquerda, em velocidade constante.
   var heroImg = document.querySelector('.tile--hero img');
   var phones = Array.prototype.slice.call(document.querySelectorAll('.phone'));
   var phoneFactor = [-0.07, 0.05, -0.11];
 
-  function measure() { tracks.forEach(function (t) { t.half = t.el.scrollWidth / 2; }); }
-  measure();
-  window.addEventListener('resize', measure);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-
-  var lastY = window.scrollY, vel = 0;
-  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
   function frame() {
     var y = window.scrollY;
-    vel += ((y - lastY) - vel) * 0.18;
-    lastY = y;
 
-    tracks.forEach(function (t) {
-      if (vel > 0.6) t.dir = 1; else if (vel < -0.6) t.dir = -1;
-      t.x -= t.dir * (t.base + Math.min(Math.abs(vel) * 0.3, 14));
-      if (t.half) { if (-t.x >= t.half) t.x += t.half; if (t.x > 0) t.x -= t.half; }
-      t.el.style.transform = 'translate3d(' + t.x.toFixed(2) + 'px,0,0)';
-    });
-    if (marquee) marquee.style.transform = 'skewX(' + clamp(-vel * 0.18, -7, 7).toFixed(2) + 'deg)';
 
     var vh = window.innerHeight;
     if (heroImg && y < vh * 1.2) heroImg.style.translate = '0 ' + (y * 0.14).toFixed(1) + 'px';
-    phones.forEach(function (p, i) {
+    if (window.innerWidth > 760) phones.forEach(function (p, i) {
       var r = p.getBoundingClientRect();
       if (r.bottom > -200 && r.top < vh + 200) {
         var off = (r.top + r.height / 2 - vh / 2) * (phoneFactor[i] || 0);

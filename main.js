@@ -53,7 +53,7 @@
   if (proximas.length) {
     vazia.hidden = true;
     lista.innerHTML = proximas.map(function (s) {
-      var link = s.link ? '<a class="textlink" href="' + esc(s.link) + '" target="_blank" rel="noopener">Ingressos →</a>' : '<span class="label">Em breve</span>';
+      var link = s.link ? '<a class="textlink" href="' + esc(s.link) + '" target="_blank" rel="noopener">Ingressos <svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>' : '<span class="label">Em breve</span>';
       return '<li><span class="dates__day"><small>' + MESES[s._d.getMonth()] + '</small><b>' + String(s._d.getDate()).padStart(2, '0') + '</b><small>' + s._d.getFullYear() + '</small></span>' +
         '<span class="dates__info"><span class="dates__place">' + esc(s.local) + '</span><span class="label">' + esc(s.cidade) + '</span></span>' + link + '</li>';
     }).join('');
@@ -61,35 +61,68 @@
     lista.hidden = true;
   }
 
-  // Grade de quadradinhos da newsletter
+  // Grade de "Onde vai tocar": equalizador que anda no compasso (124 BPM, colcheias)
   var c = document.querySelector('.news__grid');
   if (c && c.getContext) {
     var ctx = c.getContext('2d');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var cells = [];
-    function draw() {
-      var r = c.getBoundingClientRect();
-      var dpr = window.devicePixelRatio || 1;
-      c.width = r.width * dpr; c.height = r.height * dpr;
+    var S = 26, G = 14, cols = 0, rows = 0, W = 0, H = 0, step = 0, levels = [], timer = null;
+    var STEP_MS = Math.round(60000 / 124 / 2);
+    function size() {
+      var r = c.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+      W = r.width; H = r.height;
+      c.width = W * dpr; c.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var s = 26, g = 14, cols = Math.ceil(r.width / s), rows = Math.ceil(r.height / s);
-      if (cells.length !== cols * rows) {
-        cells = [];
-        for (var i = 0; i < cols * rows; i++) cells.push(Math.random());
-      }
-      ctx.clearRect(0, 0, r.width, r.height);
-      for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) {
-        var v = cells[y * cols + x];
-        var bottom = y / rows;
-        ctx.fillStyle = v > 0.985 - bottom * 0.08 ? '#d93030' : '#1b1a19';
-        ctx.fillRect(x * s, y * s, g, g);
+      cols = Math.ceil(W / S); rows = Math.ceil(H / S);
+      while (levels.length < cols) levels.push(0);
+    }
+    function contentBottom() { var inner = document.querySelector(".news__inner"); var cr = c.getBoundingClientRect(), ir = inner.getBoundingClientRect(); return ir.bottom - cr.top + 24; }
+    function target(col, st) {
+      var maxH = Math.max(3, Math.floor((H - contentBottom()) / S) - 1);
+      var beat = st / 2;
+      var kick = (st % 4 === 0) ? 1 : (st % 4 === 2 ? 0.55 : 0.25);
+      var wave = (Math.sin(col * 0.33 + beat * 0.8) + 1) / 2;
+      var wave2 = (Math.sin(col * 0.11 - beat * 0.45) + 1) / 2;
+      var bassSide = 1 - col / cols * 0.5;
+      var v = (wave * 0.55 + wave2 * 0.45) * (0.45 + 0.55 * kick) * bassSide;
+      return Math.max(0, Math.round(v * maxH + (Math.random() - 0.5) * 2));
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      var head = step % cols;
+      for (var x = 0; x < cols; x++) {
+        var lv = levels[x] || 0;
+        for (var y = 0; y < rows; y++) {
+          var fromBottom = rows - 1 - y;
+          var col = '#1b1a19';
+          if (fromBottom < lv) col = '#2a1615';
+          if (fromBottom === lv && lv > 0) col = '#d93030';
+          if (x === head && fromBottom > lv) col = '#201f1e';
+          ctx.fillStyle = col;
+          ctx.fillRect(x * S, y * S, G, G);
+        }
       }
     }
-    draw();
-    window.addEventListener('resize', draw);
-    if (!reduce) setInterval(function () {
-      for (var k = 0; k < 12; k++) cells[Math.floor(Math.random() * cells.length)] = Math.random();
+    function tick() {
+      step++;
+      for (var x = 0; x < cols; x++) {
+        var t = target(x, step);
+        levels[x] = t > levels[x] ? t : Math.max(t, levels[x] - 1);
+      }
       draw();
-    }, 900);
+    }
+    size();
+    for (var x = 0; x < cols; x++) levels[x] = target(x, 0);
+    draw();
+    window.addEventListener('resize', function () { size(); draw(); });
+    if (!reduce) {
+      var vis = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting && !timer) timer = setInterval(tick, STEP_MS);
+          if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
+        });
+      });
+      vis.observe(c);
+    }
   }
 })();

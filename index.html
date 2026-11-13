@@ -25,13 +25,22 @@
 <link rel="stylesheet" href="motion.css">
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></symbol>
+  <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M3 12h17M14 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 21V4M6 10l6-6 6 6"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 3v17M6 14l6 6 6-6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15L19.5 12z"/></symbol>
+  <symbol id="i-eq" viewBox="0 0 24 24"><path d="M3 10v4M7.5 6v12M12 9v6M16.5 3.5v17M21 8.5v7"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7"/></symbol>
+</svg>
 
 <header class="top" id="topo">
   <a class="top__brand" href="#topo">Lerock's</a>
   <div class="ticker" aria-hidden="true">
     <div class="ticker__track">
-      <span>Welcome To NeverLand · álbum autoral</span><b>✱</b><span>Set completo · Neverland Festival 2025</span><b>✱</b><span>DJ &amp; Produtor · São Paulo</span><b>✱</b>
-      <span>Welcome To NeverLand · álbum autoral</span><b>✱</b><span>Set completo · Neverland Festival 2025</span><b>✱</b><span>DJ &amp; Produtor · São Paulo</span><b>✱</b>
+      <span>Welcome To NeverLand · álbum autoral</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b><span>Set completo · Neverland Festival 2025</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b><span>DJ &amp; Produtor · São Paulo</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b>
+      <span>Welcome To NeverLand · álbum autoral</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b><span>Set completo · Neverland Festival 2025</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b><span>DJ &amp; Produtor · São Paulo</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b>
     </div>
   </div>
   <a class="btn btn--primary btn--sm" href="#datas">Bookings</a>
@@ -40,11 +49,11 @@
 <main>
 
 <!-- 01 · BENTO DE ABERTURA -->
-<section class="bento" aria-label="Abertura" data-status="ok" data-note="Abertura: foto, nome, álbum, set e press kit existem.">
-  <a class="tile tile--nav" href="#musica"><span class="label">01 Música</span><span class="tile__icon" aria-hidden="true">♫</span></a>
+<section class="bento" aria-label="Abertura">
+  <a class="tile tile--nav" href="#musica"><span class="label">01 Música</span><span class="tile__icon"><svg class="ico" aria-hidden="true"><use href="#i-eq"/></svg></span></a>
   <a class="tile tile--nav tile--img" href="#ao-vivo" style="--img:url('img/v-nvl2025.webp')"><span class="label">02 Ao vivo</span></a>
   <a class="tile tile--nav tile--img" href="#artista" style="--img:url('img/foto-09.webp')"><span class="label">03 Artista</span></a>
-  <a class="tile tile--nav tile--red" href="https://drive.google.com/drive/folders/1YVR_VjHNGVcPlL4QBrm-I04MEq9SjVoR?usp=drive_link" target="_blank" rel="noopener"><span class="label">04 Press kit</span><span class="tile__star" aria-hidden="true">✱</span></a>
+  <a class="tile tile--nav tile--red" href="https://drive.google.com/drive/folders/1YVR_VjHNGVcPlL4QBrm-I04MEq9SjVoR?usp=drive_link" target="_blank" rel="noopener"><span class="label">04 Press kit</span><svg class="tile__star" aria-hidden="true"><use href="#i-spark"/></svg></a>
 
   <a class="tile tile--album" href="#musica">
     <span class="tile__row"><span class="label">Álbum autoral</span><span class="label">Ouça agora</span></span>
@@ -67,7 +76,7 @@
       <li><span>04 Essa Vida Vai Passar Rápido</span><em>Original</em></li>
       <li><span>05 Eye Of the Tiger</span><em>Remix</em></li>
     </ol>
-    <span class="label">Ver todas ↓</span>
+    <span class="label">Ver todas <svg class="ico" aria-hidden="true"><use href="#i-arrow-down"/></svg></span>
   </a>
 
   <div class="tile tile--mixer" aria-label="Comece por Welcome To Neverland">
@@ -75,7 +84,7 @@
     <div class="mixer" aria-hidden="true">
       <i style="--h:62%"></i><i style="--h:38%"></i><i style="--h:74%"></i><i style="--h:50%"></i>
     </div>
-    <span class="tile__row"><span class="label">"Welcome To Neverland"</span><button class="chip js-play" type="button">▶ Ouvir</button></span>
+    <span class="tile__row"><span class="label">"Welcome To Neverland"</span><button class="chip js-play" type="button"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg> Ouvir</button></span>
   </div>
 
   <a class="tile tile--show" href="#ao-vivo" style="--img:url('img/v-nvl2.webp')">
@@ -86,31 +95,31 @@
 </section>
 
 <!-- 02 · ARTISTA -->
-<section class="light about" id="artista" data-status="part" data-note="Artista: bio existe; faltam 4–5 fotos reais diferentes (aqui usei miniaturas dos vídeos).">
+<section class="light about" id="artista">
   <div class="wrap">
     <span class="label">(02) Artista</span>
     <h2 class="mega">Raízes no underground.</h2>
   </div>
   <div class="strip">
-    <figure style="--img:url('img/foto-14.webp')"><figcaption class="label">Fones</figcaption></figure>
-    <figure style="--img:url('img/foto-05.webp')"><figcaption class="label">Retrato</figcaption></figure>
-    <figure class="wide" style="--img:url('img/foto-15.webp')"><figcaption class="label">Cabine</figcaption></figure>
-    <figure style="--img:url('img/foto-09.webp')"><figcaption class="label">Estúdio</figcaption></figure>
-    <figure style="--img:url('img/foto-12.webp')"><figcaption class="label">Retrato</figcaption></figure>
+    <figure style="--img:url('img/foto-14.webp')"><figcaption class="cap"><span class="cap__n">01</span><span class="cap__t">Fones</span></figcaption></figure>
+    <figure style="--img:url('img/foto-05.webp')"><figcaption class="cap"><span class="cap__n">02</span><span class="cap__t">Retrato</span></figcaption></figure>
+    <figure class="wide" style="--img:url('img/foto-15.webp')"><figcaption class="cap"><span class="cap__n">03</span><span class="cap__t">Cabine</span></figcaption></figure>
+    <figure style="--img:url('img/foto-09.webp')"><figcaption class="cap"><span class="cap__n">04</span><span class="cap__t">Estúdio</span></figcaption></figure>
+    <figure style="--img:url('img/foto-12.webp')"><figcaption class="cap"><span class="cap__n">05</span><span class="cap__t">Retrato</span></figcaption></figure>
   </div>
   <div class="wrap about__foot">
     <p>Lerock's é o projeto de Leandro Tavares, DJ e produtor com raízes na cena underground de São Paulo. Desde 2023, reúne influências do techno, do house e da música eletrônica em produções e apresentações ao vivo. É também o idealizador do Neverland Festival.</p>
-    <a class="btn btn--dark" href="https://drive.google.com/drive/folders/1YVR_VjHNGVcPlL4QBrm-I04MEq9SjVoR?usp=drive_link" target="_blank" rel="noopener">Ver press kit <span aria-hidden="true">↗</span></a>
+    <a class="btn btn--dark" href="https://drive.google.com/drive/folders/1YVR_VjHNGVcPlL4QBrm-I04MEq9SjVoR?usp=drive_link" target="_blank" rel="noopener">Ver press kit <svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
   </div>
 </section>
 
 <!-- FAIXA CORRENDO -->
 <div class="marquee" aria-hidden="true">
-  <div class="marquee__track"><span>Welcome To NeverLand</span><b>✱</b><span>Welcome To NeverLand</span><b>✱</b><span>Welcome To NeverLand</span><b>✱</b><span>Welcome To NeverLand</span><b>✱</b></div>
+  <div class="marquee__track"><span>Welcome To NeverLand</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b><span>Welcome To NeverLand</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b><span>Welcome To NeverLand</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b><span>Welcome To NeverLand</span><b><svg class="ico" aria-hidden="true"><use href="#i-spark"/></svg></b></div>
 </div>
 
 <!-- 03 · LANÇAMENTO -->
-<section class="dark release" id="musica" data-status="part" data-note="Música: títulos existem; faltam links individuais, duração e BPM de cada faixa, e trechos para prévia.">
+<section class="dark release" id="musica">
   <div class="release__bar wrap">
     <span class="label">(03) Álbum autoral</span>
     <span class="label release__hint">Clique numa faixa para ouvir no player</span>
@@ -126,11 +135,11 @@
   </ol>
   <div class="wrap release__foot">
     <p>Produções autorais e remixes que passam pelo techno e pelo house, com o álbum Welcome To NeverLand no centro.</p>
-    <a class="btn btn--primary" href="https://soundcloud.com/lerocksdj/sets/lerocks-welcome-to-neverland-authoral-album" target="_blank" rel="noopener">Ouvir o álbum <span aria-hidden="true">↗</span></a>
+    <a class="btn btn--primary" href="https://soundcloud.com/lerocksdj/sets/lerocks-welcome-to-neverland-authoral-album" target="_blank" rel="noopener">Ouvir o álbum <svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
   </div>
 
   <!-- 04 · CATÁLOGO -->
-  <div class="cards" id="catalogo" data-status="part" data-note="Catálogo: faltam capas oficiais das faixas (aqui são miniaturas de vídeo).">
+  <div class="cards" id="catalogo">
     <a class="rcard" href="https://soundcloud.com/lerocksdj/sets/lerocks-welcome-to-neverland-authoral-album" target="_blank" rel="noopener">
       <span class="rcard__img" style="--img:url('img/v-wtn.webp')"><span class="label">01</span><span class="label">Álbum</span></span>
       <span class="rcard__body rcard__body--red"><span class="label">Álbum · SoundCloud</span><span class="rcard__t">Welcome To NeverLand</span><em>Álbum autoral.</em></span>
@@ -147,32 +156,32 @@
       <span class="rcard__head"><span class="label">Catálogo</span><span class="label">Spotify · SoundCloud</span></span>
       <span class="rcard__more">Mais para<br>ouvir.</span>
       <span class="disc" aria-hidden="true"></span>
-      <span class="rcard__t">Todas as músicas <span aria-hidden="true">↗</span></span>
+      <span class="rcard__t">Todas as músicas <svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
     </a>
   </div>
 </section>
 
 <!-- 05 · AO VIVO (ingressos → sets já feitos) -->
-<section class="light live" id="ao-vivo" data-status="part" data-note="Ao vivo: sets passados existem; não há agenda futura nem datas exatas. Os links vão para o canal, faltam os links de cada vídeo.">
+<section class="light live" id="ao-vivo">
   <div class="wrap">
     <div class="live__bar"><span class="label">(05) Ao vivo</span><span class="label">Sets completos no YouTube</span></div>
     <div class="live__head">
       <h2 class="mega mega--ink">Já passou pela pista.</h2>
-      <a class="btn btn--dark" href="https://www.youtube.com/@Lerockdj" target="_blank" rel="noopener">Canal no YouTube <span aria-hidden="true">↗</span></a>
+      <a class="btn btn--dark" href="https://www.youtube.com/@Lerockdj" target="_blank" rel="noopener">Canal no YouTube <svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
     </div>
     <p class="live__lede">Sets gravados ao vivo, completos no canal.</p>
     <div class="tickets">
       <a class="ticket" href="https://www.youtube.com/@Lerockdj" target="_blank" rel="noopener">
         <span class="ticket__stub ticket__stub--red"><small>Festival</small><b>NVL</b><small>2025</small></span>
-        <span class="ticket__body"><span class="label">Set completo</span><span class="ticket__t">Neverland Festival</span><span class="ticket__c">Edição 2025</span><span class="badge badge--dark">● Assistir set</span><span class="barcode" aria-hidden="true"></span><span class="ticket__go">Ver vídeo →</span></span>
+        <span class="ticket__body"><span class="label">Set completo</span><span class="ticket__t">Neverland Festival</span><span class="ticket__c">Edição 2025</span><span class="badge badge--dark"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg> Assistir set</span><span class="barcode" aria-hidden="true"></span><span class="ticket__go">Ver vídeo <svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></span>
       </a>
       <a class="ticket" href="https://www.youtube.com/@Lerockdj" target="_blank" rel="noopener">
         <span class="ticket__stub ticket__stub--red"><small>Festival</small><b>NVL</b><small>2ª ed.</small></span>
-        <span class="ticket__body"><span class="label">Set ao vivo</span><span class="ticket__t">Neverland Festival</span><span class="ticket__c">2ª edição</span><span class="badge badge--dark">● Assistir set</span><span class="barcode" aria-hidden="true"></span><span class="ticket__go">Ver vídeo →</span></span>
+        <span class="ticket__body"><span class="label">Set ao vivo</span><span class="ticket__t">Neverland Festival</span><span class="ticket__c">2ª edição</span><span class="badge badge--dark"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg> Assistir set</span><span class="barcode" aria-hidden="true"></span><span class="ticket__go">Ver vídeo <svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></span>
       </a>
       <a class="ticket" href="https://www.youtube.com/@Lerockdj" target="_blank" rel="noopener">
         <span class="ticket__stub"><small>Festa</small><b>SV3</b><small>MG</small></span>
-        <span class="ticket__body"><span class="label">Set ao vivo</span><span class="ticket__t">Secret Vibes 3</span><span class="ticket__c">Varginha, MG</span><span class="badge badge--dark">● Assistir set</span><span class="barcode" aria-hidden="true"></span><span class="ticket__go">Ver vídeo →</span></span>
+        <span class="ticket__body"><span class="label">Set ao vivo</span><span class="ticket__t">Secret Vibes 3</span><span class="ticket__c">Varginha, MG</span><span class="badge badge--dark"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg> Assistir set</span><span class="barcode" aria-hidden="true"></span><span class="ticket__go">Ver vídeo <svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></span>
       </a>
     </div>
     <div class="live__bar live__bar--foot"><span class="label">Datas e locais conforme os títulos dos vídeos.</span><span class="label">3 sets · SP · MG</span></div>
@@ -180,13 +189,13 @@
 </section>
 
 <!-- 06 · INSTAGRAM -->
-<section class="dark insta" data-status="part" data-note="Instagram: perfil existe; faltam 3 reels ou fotos verticais para os cards (aqui são miniaturas de vídeo).">
+<section class="dark insta">
   <div class="wrap insta__grid">
     <div class="insta__text">
       <span class="label">(06) Instagram</span>
       <h2 class="mega mega--light">Siga no<br>Insta.</h2>
       <p>Bastidores da cabine, do estúdio e das pistas por onde passa.</p>
-      <a class="btn btn--primary" href="https://www.instagram.com/lerocksdj" target="_blank" rel="noopener">Seguir @lerocksdj <span aria-hidden="true">↗</span></a>
+      <a class="btn btn--primary" href="https://www.instagram.com/lerocksdj" target="_blank" rel="noopener">Seguir @lerocksdj <svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
     </div>
     <div class="phones">
       <a class="phone phone--l" href="https://www.instagram.com/lerocksdj" target="_blank" rel="noopener" style="--img:url('img/foto-11.webp')"><span class="phone__user">@lerocksdj</span><span class="phone__t">Retrato<small>Press kit</small></span></a>
@@ -212,8 +221,8 @@
         <span class="dates__empty-t">Nenhuma data anunciada no momento.</span>
         <p>Quer Lerock's no seu evento? Mande a data, a cidade e um pouco sobre o lugar.</p>
       </div>
-      <a class="btn btn--primary btn--block" href="https://wa.me/5519981604991" target="_blank" rel="noopener">Bookings pelo WhatsApp <span aria-hidden="true">↗</span></a>
-      <a class="textlink" href="https://drive.google.com/drive/folders/1YVR_VjHNGVcPlL4QBrm-I04MEq9SjVoR?usp=drive_link" target="_blank" rel="noopener">Ver press kit →</a>
+      <a class="btn btn--primary btn--block" href="https://wa.me/5519981604991" target="_blank" rel="noopener">Bookings pelo WhatsApp <svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+      <a class="textlink" href="https://drive.google.com/drive/folders/1YVR_VjHNGVcPlL4QBrm-I04MEq9SjVoR?usp=drive_link" target="_blank" rel="noopener">Ver press kit <svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
     </div>
   </div>
 </section>
@@ -221,7 +230,7 @@
 </main>
 
 <!-- RODAPÉ EM PADS -->
-<footer class="foot" data-status="ok" data-note="Rodapé: todas as redes existem. Apple Music e Bandcamp do modelo saíram.">
+<footer class="foot">
   <div class="wrap foot__grid">
     <div class="foot__brand">
       <span class="foot__name">Lerock's</span>
@@ -241,7 +250,7 @@
       <a href="https://wa.me/5519981604991" target="_blank" rel="noopener"><span>10</span>WhatsApp</a>
     </nav>
   </div>
-  <div class="wrap foot__legal"><span class="label">© 2026 Lerock's · Leandro Tavares</span><a class="label" href="#topo">Voltar ao topo ↑</a></div>
+  <div class="wrap foot__legal"><span class="label">© 2026 Lerock's · Leandro Tavares</span><a class="label" href="#topo">Voltar ao topo <svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></div>
 </footer>
 
 <!-- MINI PLAYER FIXO -->
