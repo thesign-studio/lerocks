@@ -38,12 +38,41 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePlayer(); });
 
-  // Voltar ao topo: sobe até o início, com ou sem animação conforme a preferência do aparelho
+  // Voltar ao topo: animação própria (a rolagem suave nativa trava em alguns celulares).
+  // Termina sempre no topo; um toque ou giro da roda durante a subida cancela.
+  function goTop() {
+    var el = document.scrollingElement || document.documentElement;
+    var start = el.scrollTop;
+    var html = document.documentElement;
+    var reduceTop = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    if (reduceTop || start < 2) { el.scrollTop = 0; html.style.scrollBehavior = prev; return; }
+    var dur = Math.min(900, 350 + start / 12), t0 = null, cancelled = false;
+    function stop() { cancelled = true; }
+    window.addEventListener('wheel', stop, { passive: true, once: true });
+    window.addEventListener('touchstart', stop, { passive: true, once: true });
+    function step(ts) {
+      if (cancelled) { html.style.scrollBehavior = prev; return; }
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.scrollTop = Math.round(start * (1 - e));
+      if (p < 1) requestAnimationFrame(step);
+      else {
+        el.scrollTop = 0; window.scrollTo(0, 0);
+        html.style.scrollBehavior = prev;
+        window.removeEventListener('wheel', stop); window.removeEventListener('touchstart', stop);
+      }
+    }
+    requestAnimationFrame(step);
+    // Garantia: se o navegador segurar a animação, chega ao topo mesmo assim
+    setTimeout(function () { if (!cancelled && el.scrollTop > 0) { el.scrollTop = 0; window.scrollTo(0, 0); html.style.scrollBehavior = prev; } }, dur + 250);
+  }
   document.querySelectorAll('a[href="#topo"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      var reduceTop = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: reduceTop ? 'auto' : 'smooth' });
+      goTop();
       if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
     });
   });
