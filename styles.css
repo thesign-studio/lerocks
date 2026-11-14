@@ -275,8 +275,11 @@ p { margin: 0; max-width: 62ch; }
 .pads a:hover { background: var(--red-action); }
 .pads a:hover span { color: var(--on-red); }
 .pads a:active { transform: translateY(2px); }
-.foot__legal { display: flex; justify-content: space-between; gap: 16px; padding-block: 24px calc(90px + env(safe-area-inset-bottom, 0px)); margin-top: 48px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.foot__legal { display: grid; gap: 10px; padding-block: 24px calc(90px + env(safe-area-inset-bottom, 0px)); margin-top: 48px; border-top: 1px solid var(--line); }
+.foot__legal-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .foot__legal a { text-decoration: none; }
+.foot__credit { color: var(--line-strong); transition: color .2s var(--ease); }
+.foot__credit:hover { color: var(--red-text); }
 @media (max-width: 900px) { .foot__grid { grid-template-columns: 1fr; } .pads { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pads a { aspect-ratio: auto; min-height: 72px; } }
 
 /* Mini player */
